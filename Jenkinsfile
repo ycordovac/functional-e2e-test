@@ -2,7 +2,7 @@ pipeline{
 
   agent {
     node {
-        label "nodo-java"
+        label "nodo-java-chrome"
      }
   }
 
