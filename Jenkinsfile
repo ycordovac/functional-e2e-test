@@ -9,9 +9,8 @@ pipeline{
   stages {
 
     stage('Run function testing E2E') {
-
-     docker.image('selenium/standalone-chrome').withRun('--network minikube --network-alias node-chrome -p 4444:4444')
       steps {
+        docker.image('selenium/standalone-chrome').withRun('--network minikube --network-alias node-chrome -p 4444:4444')
         sh 'mvn clean verify -Dchrome.switches=--headless;'
       }
     }
