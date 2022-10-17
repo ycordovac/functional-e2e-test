@@ -1,14 +1,16 @@
 pipeline{
 
   agent {
-    node {
-        label "nodo-java-chrome"
-     }
+      docker {
+          image 'selenium/standalone-chrome'
+          reuseNode true
+      }
   }
 
   stages {
 
     stage('Run function testing E2E') {
+
       steps {
         sh 'mvn clean verify -Dchrome.switches=--headless;'
       }
