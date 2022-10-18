@@ -31,13 +31,14 @@ pipeline{
 
   post {
     always {
-
-      try {
-          sh 'docker stop standalone-chrome'
-          sh 'docker rm standalone-chrome'
-          sh 'docker rm image selenium/standalone-chrome'
-      } catch (Exception ignored) {}
-      sh 'docker logout'
+      script {
+        try {
+            sh 'docker stop standalone-chrome'
+            sh 'docker rm standalone-chrome'
+            sh 'docker rm image selenium/standalone-chrome'
+        } catch (Exception ignored) {}
+            sh 'docker logout'
+      }
     }
   }
 
