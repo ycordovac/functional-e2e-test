@@ -24,7 +24,7 @@ pipeline{
 
     stage('Run function testing E2E') {
       steps {
-        sh 'mvn clean verify -Dchrome.switches=--headless -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome'
+        sh 'mvn clean verify -Dchrome.switches=--headless -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run"'
       }
     }
 
