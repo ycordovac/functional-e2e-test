@@ -18,12 +18,6 @@ public class FillAddTutorialForm implements Interaction {
     @Override
     @Step("{0} navigate to the form section")
     public <T extends Actor> void performAs(T actor) {
-//
-//        try {
-//            Thread.sleep(50000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
 
         actor.attemptsTo(WaitUntil.the(AddTutorialPage.ADD_TUTORIAL_SECTION_BTN, isCurrentlyVisible()).forNoMoreThan(30).seconds());
         actor.attemptsTo(Click.on(AddTutorialPage.ADD_TUTORIAL_SECTION_BTN));
