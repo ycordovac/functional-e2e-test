@@ -6,6 +6,13 @@ pipeline{
     }
   }
 
+
+    properties([
+      parameters([
+        string(name: 'hudson.model.DirectoryBrowserSupport.CSP', defaultValue: ''),
+      ])
+    ])
+
   stages {
 
     stage('Deploy to K8s') {
