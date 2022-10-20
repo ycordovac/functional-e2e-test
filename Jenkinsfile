@@ -24,7 +24,7 @@ pipeline{
 
     stage('Run function testing E2E') {
       steps {
-        sh 'mvn clean verify -Dwebdriver.remote.url=http://localhost:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
+        sh 'mvn clean verify -Dwebdriver.remote.url=https://9f17-148-3-112-184.eu.ngrok.io/wd/hub -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
       }
     }
 
