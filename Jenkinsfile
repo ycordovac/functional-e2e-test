@@ -32,10 +32,6 @@ pipeline{
       steps {
         sh 'mvn serenity:aggregate'
 
-        script {
-            System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
-        }
-
         publishHTML(target: [
             reportName : 'Serenity',
             reportDir:   'target/site/serenity',
