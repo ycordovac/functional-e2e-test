@@ -16,7 +16,7 @@ public class AddTutorial implements Task {
     @Override
     @Step("{0} navigate to the form section")
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Open.relativeUrl("http://angular-14-app.default:80"));
+        actor.attemptsTo(Open.relativeUrl("https://vast-beers-grab-213-0-57-163.loca.lt:80"));
         actor.attemptsTo(FillAddTutorialForm.fill());
     }
 

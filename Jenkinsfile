@@ -32,7 +32,7 @@ spec:
 
     stage('Run function testing E2E') {
       steps {
-        sh 'mvn clean verify -Dwebdriver.remote.url=http://standalone-chrome.default:4444 -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
+        sh 'mvn clean verify -Dwebdriver.remote.url=https://vast-beers-grab-213-0-57-163.loca.lt -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
       }
     }
 
