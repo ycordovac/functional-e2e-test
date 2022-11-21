@@ -1,30 +1,38 @@
 pipeline{
 
   agent {
-    node {
-        label 'nodo-java'
+      kubernetes {
+        yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: shell
+    image: yandihlg/jenkins-nodo-java-bootcamp:latest
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: docker-socket-volume
+    securityContext:
+      privileged: true
+  volumes:
+  - name: docker-socket-volume
+    hostPath:
+      path: /var/run/docker.sock
+      type: Socket
+    command:
+    - sleep
+    args:
+    - infinity
+        '''
+        defaultContainer 'shell'
+      }
     }
-  }
 
   stages {
 
-    stage('Deploy to K8s') {
-
-      steps{
-        script {
-          if(fileExists("configuracion")){
-            sh 'rm -r configuracion'
-          }
-        }
-        sh 'git clone https://github.com/dberenguerdevcenter/kubernetes-helm-docker-config.git configuracion --branch test-implementation'
-        sh 'kubectl apply -f configuracion/kubernetes-deployment/standalone-chrome/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
-      }
-
-    }
-
     stage('Run function testing E2E') {
       steps {
-        sh 'mvn clean verify -Dwebdriver.remote.url=https://9f17-148-3-112-184.eu.ngrok.io/wd/hub -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
+        sh 'mvn clean verify -Dwebdriver.remote.url=http://standalone-chrome.default:4444 -Dwebdriver.remote.driver=chrome -Dchrome.switches="--no-sandbox,--ignore-certificate-errors,--homepage=about:blank,--no-first-run,--headless"'
       }
     }
 
